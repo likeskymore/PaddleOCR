@@ -12,6 +12,7 @@ inference_results/
 output/
 train_data/
 log/
+pretrained_model/
 *.DS_Store
 *.vs
 *.user
