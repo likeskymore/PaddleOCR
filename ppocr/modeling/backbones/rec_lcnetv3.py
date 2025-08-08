@@ -218,9 +218,7 @@ class LearnableRepLayer(nn.Layer):
                 out = self.act(out)
             return out
 
-        out = 0
-        if self.identity is not None:
-            out += self.identity(x)
+        out = self.identity(x) if self.identity is not None else 0
 
         if self.conv_1x1 is not None:
             out += self.conv_1x1(x)

@@ -14,7 +14,7 @@ Global:
   save_inference_dir:
   use_visualdl: false
   infer_img: doc/imgs_words/ch/word_1.jpg
-  character_dict_path: ./ppocr/utils/dict/ppocrv5_dict.txt
+  character_dict_path: ../vn_dictionary.txt
   max_text_length: &max_text_length 25
   infer_mode: false
   use_space_char: true
@@ -77,10 +77,10 @@ Train:
   dataset:
     name: MultiScaleDataSet
     ds_width: false
-    data_dir: ./train_data/
-    ext_op_transform_idx: 1
+    data_dir: ../
+    ext_op_transform_idx: 1 
     label_file_list:
-    - ./train_data/train_list.txt
+    - ../dataset/train.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -103,7 +103,7 @@ Train:
   sampler:
     name: MultiScaleSampler
     scales: [[320, 32], [320, 48], [320, 64]]
-    first_bs: &bs 128
+    first_bs: &bs 16
     fix_bs: false
     divided_factor: [8, 16] # w, h
     is_training: True
@@ -115,9 +115,9 @@ Train:
 Eval:
   dataset:
     name: SimpleDataSet
-    data_dir: ./train_data
+    data_dir: ../
     label_file_list:
-    - ./train_data/val_list.txt
+    - ../dataset/train.txt
     transforms:
     - DecodeImage:
         img_mode: BGR
@@ -136,5 +136,5 @@ Eval:
   loader:
     shuffle: false
     drop_last: false
-    batch_size_per_card: 128
+    batch_size_per_card: 16
     num_workers: 4
